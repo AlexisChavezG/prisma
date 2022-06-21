@@ -6,6 +6,11 @@ const port = process.env.PORT || 3000;
 // Require para usar Prisma
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const cors =require("cors")
+const corsOptions={
+  origin: "http://localhost:8081"
+};
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.json({message: 'alive'});
@@ -95,7 +100,7 @@ app.delete('/mission/:id', async (req, res) => {
 	return res.json({message: "Eliminado correctamente"});
 });
 
-
+// Cors
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
 });
